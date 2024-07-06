@@ -20,3 +20,5 @@ yarn-error.log
 /.vscode
 /public/images/
 /public/*.html
+/public/adminsite/img/
+/public/adminsite/*.html

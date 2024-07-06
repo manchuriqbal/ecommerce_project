@@ -35,19 +35,17 @@
         </ul>
         <div class="user_option">
 
-          <a href="{{ url('/login') }}">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            <span>
-              Login
-            </span>
-          </a>
+            <form method="GET" action="{{ route('login') }}">
+                @csrf
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input class="list-inline-item " type="submit" value="Login"> <i class="icon-logout"></i>
+            </form>
 
-          <a href="{{ url('/register') }}">
-            <i class="fa fa-address-card" aria-hidden="true"></i>
-            <span>
-              Register
-            </span>
-          </a>
+            <form method="GET" action="{{ route('register') }}">
+                @csrf
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input class="list-inline-item " type="submit" value="Register"> <i class="icon-logout"></i>
+            </form>
 
           <a href="">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
