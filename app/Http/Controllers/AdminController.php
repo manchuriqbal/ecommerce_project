@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function create(){
-        return view('admin.category');
+        $categories = Category::all();
+        return view('admin.category', compact('categories'));
     }
 
     public function store(Request $request){
@@ -16,6 +17,7 @@ class AdminController extends Controller
 
         $category->category_name = $request->category;
         $category->save();
+
         if ($category->save()) {
             return redirect()->back()->with('success', 'Category added successfully!');
         } else {

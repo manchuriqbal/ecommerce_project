@@ -22,6 +22,22 @@
     .no-padding-bottom {
         padding-bottom: 0;
     }
+    .table_dego {
+
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .table_deg {
+        text-align: center;
+        width: 300PX;
+    }
+    .table_head{
+        margin-top: 5px;
+        color: white;
+        background-color: gray;
+    }
 </style>
   </head>
   <body>
@@ -37,7 +53,7 @@
           </div>
         </div>
 
-        <section class="no-padding-top no-padding-bottom">
+        <section class="no-padding-top no-padding-bottom mb-5">
             <div class="container-fluid">
                 <div class="row">
                     <div class="input-container">
@@ -50,6 +66,22 @@
                 </div>
             </div>
         </section>
+        <div class="table_dego">
+            <table class="table_deg table table-striped ">
+                <thead>
+                  <tr>
+                    <th class="table_head" scope="col">Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($categories as $categories )
+                    <tr>
+                        <td>{{$categories->category_name}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+              </table>
+        </div>
 
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">
