@@ -31,12 +31,15 @@
     }
     .table_deg {
         text-align: center;
-        width: 300PX;
+        width: 500PX;
     }
     .table_head{
         margin-top: 5px;
         color: white;
-        background-color: gray;
+        background-color: green;
+    }
+    th{
+
     }
 </style>
   </head>
@@ -71,12 +74,19 @@
                 <thead>
                   <tr>
                     <th class="table_head" scope="col">Category</th>
+                    <th class="table_head">action</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($categories as $categories )
                     <tr>
                         <td>{{$categories->category_name}}</td>
+                       <td>
+                        <form action="{{route('category.delete', $categories->id)}}" method="post">
+                            @csrf
+                            @method('delete')
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form></td>
                     </tr>
                 @endforeach
                 </tbody>

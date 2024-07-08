@@ -14,14 +14,30 @@ class AdminController extends Controller
 
     public function store(Request $request){
         $category = new Category;
-
         $category->category_name = $request->category;
         $category->save();
 
         if ($category->save()) {
-            return redirect()->back()->with('success', 'Category added successfully!');
+            toastr()->closeButton()->timeOut(5000)->success('Category Add successfully!');
+            return redirect()->back();
         } else {
-            return redirect()->back()->with('error', 'Failed to add category. Please try again.');
+            toastr()->closeButton()->timeOut(5000)->warning('Field to Add Category. try again later!');
+            return redirect()->back();
         }
+    }
+    public function delete($id){
+        $data = Category::find($id);
+        $data->delete();
+
+
+
+        if ($data->delete()) {
+            toastr()->closeButton()->timeOut(5000)->info('Category Delete successfully!');
+            return redirect()->back();
+        } else {
+            toastr()->closeButton()->timeOut(5000)->warning('Category Delete successfully!');
+            return redirect()->back();
+        }
+
     }
 }

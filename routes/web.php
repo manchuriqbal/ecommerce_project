@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
 Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth','admin'])->name('admin.dashboard');
 Route::get('admin/category', [AdminController::class, 'create'])->middleware(['auth','admin'])->name('category.create');
 Route::post('admin/category', [AdminController::class, 'store'])->middleware(['auth','admin'])->name('category.store');
+Route::delete('admin/delete/{id}', [AdminController::class, 'delete'])->middleware(['auth','admin'])->name('category.delete');
