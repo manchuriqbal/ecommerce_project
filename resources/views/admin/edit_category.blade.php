@@ -52,7 +52,7 @@
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Add Category</h2>
+            <h2 class="h5 no-margin-bottom">Update Category</h2>
           </div>
         </div>
 
@@ -60,39 +60,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="input-container">
-                        <form action="{{route('category.store')}}" method="post">
+                        <form action="{{route('category.update', $data->id)}}" method="post">
                             @csrf
-                            <input class="input_category mr-2" type="text" name="category">
-                            <input class="btn btn-success" type="submit" value="Add">
+                            @method('put')
+                            <input class="input_category mr-2" type="text" name="category" value="{{$data->category_name}}">
+                            <input class="btn btn-success" type="submit" value="Update">
                         </form>
                     </div>
                 </div>
             </div>
         </section>
         <div class="table_dego">
-            <table class="table_deg table table-striped ">
-                <thead>
-                  <tr>
-                    <th class="table_head" scope="col">Category</th>
-                    <th class="table_head" scope="col">Update</th>
-                    <th class="table_head">action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($categories as $categories )
-                    <tr>
-                        <td>{{$categories->category_name}}</td>
-                        <td><a href="{{route('category.edit', $categories->id)}}" ><button class="btn btn-info" type="submit">Edit</button></a></td>
-                       <td>
-                        <form action="{{route('category.delete', $categories->id)}}" onsubmit="return confirmDelete(event, this)" method="post">
-                            @csrf
-                            @method('delete')
-                            <input class="btn btn-danger" type="submit" value="Delete">
-                        </form></td>
-                    </tr>
-                @endforeach
-                </tbody>
-              </table>
+
+
         </div>
 
         <footer class="footer">
@@ -106,32 +86,6 @@
       </div>
     </div>
     <!-- JavaScript files-->
-    <script>
-        function confirmDelete(event, form) {
-            event.preventDefault();
-
-            swal({
-                title: "Are you sure?",
-                text: "Are you sure that you want to Delete this Category?",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                })
-                .then(willDelete => {
-                if (willDelete) {
-                    form.submit();
-                    swal("Deleted!", "Your imaginary file has been deleted!", "warning");
-                }
-                else{
-                    swal("Safe!", "Your imaginary file Are Deleted!", "success");
-
-                }
-                });
-
-        }
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src=" {{asset('adminsite/vendor/jquery.cookie/jquery.cookie.js')}}"> </script>
     <script src=" {{asset('adminsite/vendor/jquery/jquery.min.js')}}"></script>

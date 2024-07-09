@@ -23,3 +23,5 @@ Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['au
 Route::get('admin/category', [AdminController::class, 'create'])->middleware(['auth','admin'])->name('category.create');
 Route::post('admin/category', [AdminController::class, 'store'])->middleware(['auth','admin'])->name('category.store');
 Route::delete('admin/delete/{id}', [AdminController::class, 'delete'])->middleware(['auth','admin'])->name('category.delete');
+Route::get('admin/edit_category/{id}', [AdminController::class, 'edit'])->middleware(['auth','admin'])->name('category.edit');
+Route::put('admin/update_category/{id}', [AdminController::class, 'update'])->middleware(['auth','admin'])->name('category.update');

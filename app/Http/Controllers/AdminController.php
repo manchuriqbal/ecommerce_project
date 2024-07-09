@@ -40,4 +40,18 @@ class AdminController extends Controller
         }
 
     }
+
+    public function edit($id){
+        $data = Category::find($id);
+        return view('admin.edit_category', compact('data'));
+    }
+
+    public function update(Request $request, $id){
+        $data = Category::find($id);
+
+        $data->category_name = $request->category;
+        $data->save();
+
+        return redirect(route('category.create'));
+    }
 }
