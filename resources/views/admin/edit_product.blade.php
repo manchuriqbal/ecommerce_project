@@ -10,6 +10,11 @@
         width: 100%;
         margin-top: 50px;
     }
+    img{
+        width: 300px;
+        height: 200px;
+
+    }
     label{
         width: 250px;
     }
@@ -41,39 +46,45 @@
         </div>
 
         <div class="table_deg">
-            <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('product.update', $product->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="table_row">
                     <label for="">Title</label>
-                    <input type="text" name="title" required>
+                    <input type="text" name="title" value="{{$product->name}}">
                 </div>
                 <div class="table_row">
                     <label for="">Description</label>
-                    <textarea name="description" cols="30" rows="10"></textarea>
+                    <textarea name="description" cols="30" rows="10">{{$product->description}}</textarea>
                 </div>
                 <div class="table_row">
                     <label for="">Price</label>
-                    <input type="text" name="price" required>
+                    <input type="text" name="price" value="{{$product->price}}">
                 </div>
                 <div class="table_row">
+
                     <label for="">Category Name</label>
                     <select name="category" required>
-                        <option selected disabled value="">Select Category</option>
-                        @foreach ($categories as $categories)
-                            <option value="{{$categories->category_name}}">{{$categories->category_name}}</option>
+                        <option  disabled value="">Select Category</option>
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->category_name }}" {{ $category->category_name == $product->category ? 'selected' : '' }}>{{ $category->category_name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="table_row">
                     <label for="">Quantity</label>
-                    <input type="number" name="quantity" >
+                    <input type="number" name="quantity" value="{{$product->quantity}}">
                 </div>
                 <div class="table_row">
-                    <label for="">Image</label>
-                    <input class="image" type="file" name="image" >
+                    <label for="">Old Image</label>
+                    <img src="{{ asset('products/' . $product->image) }}" alt="">
                 </div>
-                    <input class="btn btn-success btn-lg float-right" type="submit" value="Add Product">
-            </form>
+                <div class="table_row">
+                    <label for="">New Image</label>
+                    <input class="image" type="file" name="image" value="">
+                </div>
+                    <input class="btn btn-success btn-lg float-right mt-4" type="submit" value="Update Product">
+                </form>
         </div>
 
         <footer class="footer">

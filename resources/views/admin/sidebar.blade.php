@@ -14,7 +14,7 @@
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Products</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                 <li><a href="{{route('product.add')}}">Add Product</a></li>
-                <li><a href="https://www.facebook.com/">Contact Us</a></li>
+                <li><a href="{{route('product.view')}}">View Products</a></li>
                 <li><a href="https://github.com/">About Us</a></li>
             </ul>
             </li>

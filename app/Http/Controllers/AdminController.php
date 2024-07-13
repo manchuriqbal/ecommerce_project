@@ -81,11 +81,58 @@ class AdminController extends Controller
 
         if ($products->save()) {
             toastr()->closeButton()->timeOut(5000)->success('Product Add successfully!');
-            return redirect()->back();
+            return redirect(route('product.view'));
         } else {
             toastr()->closeButton()->timeOut(5000)->warning('Field to Add Product. try again later!');
             return redirect()->back();
         }
+
+    }
+
+
+    public function view_products(){
+        $product = Product::paginate(5);
+        return view('admin.view_products', compact('product'));
+    }
+
+
+    public function edit_product($id){
+        $categories = Category::all();
+        $product = Product::find($id);
+        return view('admin.edit_product', compact('product', 'categories'));
+    }
+
+    public function update_product(Request $request, $id){
+        $product_data = Product::find($id);
+
+        $product_data->name = $request->title;
+        $product_data->description = $request->description;
+        $product_data->price = $request->price;
+        $product_data->category = $request->category;
+        $product_data->quantity = $request->quantity;
+
+        $image = $request->image;
+        if ($image) {
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $request->image->move('products', $image_name);
+            $product_data->image = $image_name;
+        }
+
+        if ($product_data->save()) {
+            toastr()->closeButton()->timeOut(5000)->success('Product Update successfully!');
+            return redirect(route('product.view'));
+        } else {
+            toastr()->closeButton()->timeOut(5000)->warning('Field to Update Product. try again later!');
+            return redirect(route('product.view'));
+        }
+
+    }
+
+    public function delete_product($id){
+        $product = Product::find($id);
+
+        $product->delete();
+        return redirect()->back();
 
     }
 
