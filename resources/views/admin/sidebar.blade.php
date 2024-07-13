@@ -11,18 +11,11 @@
     <ul class="list-unstyled">
         <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
         <li><a href="{{route('category.create')}}"> <i class="icon-grid"></i>Categories </a></li>
-        <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
+        <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Products</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="https://www.google.com/">Home</a></li>
+                <li><a href="{{route('product.add')}}">Add Product</a></li>
                 <li><a href="https://www.facebook.com/">Contact Us</a></li>
                 <li><a href="https://github.com/">About Us</a></li>
-            </ul>
-            </li>
-            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Products </a>
-            <ul id="exampledropdownDropdown" class="collapse list-unstyled">
-                <li><a href="https://www.google.com/">Laptap</a></li>
-                <li><a href="https://www.facebook.com/">Mobile</a></li>
-                <li><a href="https://github.com/">Macbook</a></li>
             </ul>
             </li>
     </ul>
