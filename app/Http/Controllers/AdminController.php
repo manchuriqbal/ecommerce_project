@@ -91,7 +91,7 @@ class AdminController extends Controller
 
 
     public function view_products(){
-        $product = Product::paginate(5);
+        $product = Product::paginate(3);
         return view('admin.view_products', compact('product'));
     }
 
@@ -131,8 +131,32 @@ class AdminController extends Controller
     public function delete_product($id){
         $product = Product::find($id);
 
-        $product->delete();
-        return redirect()->back();
+
+        $image_path = public_path('products/'.$product->image);
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }
+
+
+        if ($product->delete()) {
+            toastr()->closeButton()->timeOut(5000)->success('Product Delete successfully!');
+            return redirect()->back();
+        } else {
+            toastr()->closeButton()->timeOut(5000)->warning('Field to Delete Product. try again later!');
+            return redirect()->back();
+        }
+
+
+    }
+
+
+    public function search_product (Request $request){
+
+        $search = $request->search;
+
+        $product = Product::where('name', 'LIKE', '%' .$search .'%')->paginate(3);
+
+        return view('admin.view_products', compact('product'));
 
     }
 

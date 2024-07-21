@@ -19,6 +19,7 @@ yarn-error.log
 /.idea
 /.vscode
 /public/images/
+/public/products/
 /public/*.html
 /public/adminsite/img/
 /public/adminsite/*.html

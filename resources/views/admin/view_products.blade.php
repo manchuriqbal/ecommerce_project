@@ -43,8 +43,10 @@
         color: white;
         background-color: rgb(114, 114, 255);
     }
-    .title{
-        width: 300px;
+    .input_category {
+        height: 40px;
+        width: 400px;
+        padding-bottom: 1px;
     }
 </style>
   </head>
@@ -62,12 +64,19 @@
         </div>
 
 <div class="body_con">
-        <div class="table_dego">
+
+        <form action="{{route('product.search')}}" method="post">
+            @csrf
+            <input class="input_category" type="text" name="search" >
+            <input class="btn btn-secondary" type="submit" value="Search">
+        </form>
+        <div class="table_dego mt-4">
             <table class="table_deg table table-striped ">
                 <thead>
                   <tr>
-                    <th class="table_head" scope="col">Title</th>
                     <th class="table_head" scope="col">Image</th>
+                    <th class="table_head" scope="col">Title</th>
+                    <th class="table_head" scope="col">Descriptions</th>
                     <th class="table_head" scope="col">Price</th>
                     <th class="table_head">quantiy</th>
                     <th class="table_head">category</th>
@@ -79,10 +88,11 @@
                     @foreach ($product as $products)
 
                     <tr>
-                        <td class="title">{{$products->name}}</td>
-                        <td>
-                            <img src="{{ asset('products/' . $products->image) }}" alt="">
-                        </td>
+                      <td>
+                        <img src="{{ asset('products/' . $products->image) }}" alt="">
+                      </td>
+                      <td class="title">{!!Str::limit($products->name, 30)!!}</td>
+                      <td>{!!Str::limit($products->description, 50)!!}</td>
                         <td>{{$products->price}}</td>
                         <td>{{$products->quantity}}</td>
                         <td>{{$products->category}}</td>
