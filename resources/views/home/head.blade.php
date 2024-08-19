@@ -23,3 +23,26 @@
 <link href="{{asset('css/style.css')}}" rel="stylesheet" />
 <!-- responsive style -->
 <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
+
+
+<style>
+    .spacing{
+        margin: 0 10px;
+        position: relative;
+        display: inline-block;
+    }
+    .cart_count{
+        font-size: 12px;
+        color: rgb(255, 0, 0);
+        position: absolute;
+        top: -12px;
+        left: 90%;
+        transform: translateX(-50%);
+    }
+    .fa-shopping-bag {
+        font-size: 20px;
+    }
+    .fa-shopping-bag:hover{
+        color: rgb(45, 10, 10)
+    }
+</style>

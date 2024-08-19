@@ -27,9 +27,9 @@
                 </h6>
               </div>
               <div class="new">
-                <span>
-                  New
-                </span>
+                <a href="{{route('home.add_to_cart', $product->id)}}">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                </a>
               </div>
             </a>
         </div>

@@ -39,26 +39,26 @@
             @auth
 
 
-            <form method="POST" action="{{ route('logout') }}">
+            <form class="spacing" method="POST" action="{{ route('logout') }}">
                 @csrf
 
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <input class="list-inline-item btn btn-secoundary" type="submit" value="logout">
             </form>
 
-            <a href="">
-                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <a href="{{route('home.my_cart')}}" class="spacing">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span class="cart_count">({{$count}})</span>
             </a>
 
             @else
 
-            <form method="GET" action="{{ route('login') }}">
+            <form class="spacing" method="GET" action="{{ route('login') }}">
                 @csrf
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <input  class="list-inline-item btn btn-secoundary" type="submit" value="Login"> <i class="icon-logout"></i>
             </form>
 
-            <form method="GET" action="{{ route('register') }}">
+            <form class="spacing" method="GET" action="{{ route('register') }}">
                 @csrf
                 <i class="fa fa-vcard" aria-hidden="true"></i>
                 <input class="list-inline-item btn btn-secoundary" type="submit" value="Register"> <i class="icon-logout"></i>
