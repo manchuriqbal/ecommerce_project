@@ -18,8 +18,8 @@
 
     }
     .body_con{
-        margin-right: 20px;
-        margin-left: 20px;
+        display: flex;
+        padding: 0px 100px;
     }
 
     .table_head{
@@ -33,6 +33,34 @@
     td{
         border: 2px solid rgb(142, 133, 133);
     }
+    .amount_price {
+        background: green;
+        color: white;
+    }
+    .order_dego{
+        padding: 80px 0px;
+    }
+    label{
+        width: 150px;
+    }
+    input[type='number'], input[type='text'], select, .image{
+        width: 250px;
+        height: 50px;
+    }
+    textarea{
+        width: 250px;
+        height: 100px;
+    }
+    .table_space{
+        margin-top: 40px;
+    }
+    .no_cart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 100px;
+        padding: 100px;
+    }
   </style>
 </head>
 
@@ -45,29 +73,58 @@
   <!-- end hero area -->
 
 
+@if ($count>0)
 
 
   <div class="body_con ">
-    <div class="table_dego mt-10">
+    <div class="order_dego col-md-4">
+        <form action="{{route('home.add_order')}}" method="post">
+            @csrf
+            <div class="">
+                <label for="">Name</label>
+                <input type="text" name="name" value="{{Auth::user()->name}}">
+            </div>
+            <div class="table_space">
+                <label for="">Address</label>
+                <textarea name="address" cols="30" rows="10">{{Auth::user()->address}}</textarea>
+            </div>
+            <div class="table_space">
+                <label for="">Phone</label>
+                <input type="text" name="phone" value="{{Auth::user()->phone}}">
+            </div>
+
+
+
+            <div class="table_space">
+                <input class="btn btn-primary" type="submit" value="Order">
+            </div>
+        </form>
+    </div>
+
+    <div class="table_dego mt-10 col-md-7">
         <table class="table_deg table table-striped ">
             <thead>
               <tr>
+                  <th class="table_head" scope="col">Image</th>
                   <th class="table_head" scope="col">Title</th>
                   <th class="table_head" scope="col">Price</th>
-                  <th class="table_head" scope="col">Image</th>
                   <th class="table_head" scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
 
+                <?php
+                $value = 0;
+                ?>
+
                 @foreach ($carts as $cart)
             <tr>
 
-                <td>{{$cart->product->name}}</td>
-                <td>{{$cart->product->price}}</td>
                 <td>
                     <img width="100px" src="products/{{$cart->product->image}}" alt="">
-                  </td>
+                </td>
+                <td>{{$cart->product->name}}</td>
+                <td>{{$cart->product->price}}</td>
 
                 <td>
                     <form action="{{route('home.cart_item_delete', $cart->id)}}" method="post">
@@ -76,8 +133,18 @@
                         <button class="btn btn-danger">Delete</button>
                     </form>
                 </td>
+
+                <?php
+                $value = $value + $cart->product->price;
+                ?>
+                @endforeach
             </tr>
-            @endforeach
+            <tr >
+                <td class="amount_price"></td>
+                <td class="amount_price">Total Amount of Price</td>
+                <td class="amount_price">{{$value}}</td>
+                <td class="amount_price"></td>
+            </tr>
 
             </tbody>
           </table>
@@ -85,6 +152,16 @@
 
 </div>
 
+
+
+@else
+
+<div class="no_cart">
+    <span>This user dosen't have any cart. please add some products on cart first. </span>
+</div>
+
+
+@endif
 
 
 
