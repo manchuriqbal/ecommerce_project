@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -106,5 +107,33 @@ class HomeController extends Controller
             toastr()->closeButton()->timeOut(5000)->success('Field to Delete Cart item. try again later!');
             return redirect()->back();
         }
+    }
+
+    public function add_order(Request $request){
+        $name = $request->name;
+        $address = $request->address;
+        $phone = $request->phone;
+        $user_id = Auth::user()->id;
+        $carts = Cart::where('user_id', $user_id)->get();
+
+        foreach ($carts as $cart) {
+            $order = new Order;
+            $order->name = $name;
+            $order->address = $address;
+            $order->phone = $phone;
+            $order->user_id = $user_id;
+            $order->product_id = $cart->product_id;
+
+            $order->save();
+        }
+        $cart_reamove = Cart::where('user_id', $user_id)->get();
+
+        foreach ($cart_reamove as $remove) {
+            $data = Cart::find($remove->id);
+            $data->delete();
+        }
+        toastr()->closeButton()->timeOut(5000)->success('Order Placed successfully!');
+        return redirect(route('home.home'));
+
     }
 }
