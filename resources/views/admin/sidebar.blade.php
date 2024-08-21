@@ -17,6 +17,7 @@
                 <li><a href="{{route('product.view')}}">View Products</a></li>
                 <li><a href="https://github.com/">About Us</a></li>
             </ul>
-            </li>
+        </li>
+        <li><a href="{{route('admin.orders')}}"> <i class="icon-grid"></i>Orders </a></li>
     </ul>
   </nav>

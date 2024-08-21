@@ -38,5 +38,6 @@ Route::get('admin/edit_product/{id}', [AdminController::class, 'edit_product'])-
 Route::put('admin/update_product/{id}', [AdminController::class, 'update_product'])->middleware(['auth','admin'])->name('product.update');
 Route::delete('admin/delete_product/{id}', [AdminController::class, 'delete_product'])->middleware(['auth','admin'])->name('product.delete');
 Route::post('admin/search_product', [AdminController::class, 'search_product'])->middleware(['auth','admin'])->name('product.search');
+Route::get('admin/orders', [AdminController::class, 'orders'])->middleware(['auth','admin'])->name('admin.orders');
 
 
