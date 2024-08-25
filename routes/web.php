@@ -39,5 +39,8 @@ Route::put('admin/update_product/{id}', [AdminController::class, 'update_product
 Route::delete('admin/delete_product/{id}', [AdminController::class, 'delete_product'])->middleware(['auth','admin'])->name('product.delete');
 Route::post('admin/search_product', [AdminController::class, 'search_product'])->middleware(['auth','admin'])->name('product.search');
 Route::get('admin/orders', [AdminController::class, 'orders'])->middleware(['auth','admin'])->name('admin.orders');
+Route::get('admin/on_the_way/{id}', [AdminController::class, 'on_the_way'])->middleware(['auth','admin'])->name('admin.on_the_way');
+Route::get('admin/delivered/{id}', [AdminController::class, 'delivered'])->middleware(['auth','admin'])->name('admin.delivered');
+Route::get('admin/print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware(['auth','admin'])->name('admin.print_pdf');
 
 

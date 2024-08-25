@@ -10,7 +10,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 60px;
+        margin: 60px 60px 60px 0px;
         }
     .table_deg {
         text-align: center;
@@ -39,16 +39,17 @@
     }
     .order_dego{
         padding: 80px 0px;
+        margin-left: 50px;
     }
     label{
         width: 150px;
     }
     input[type='number'], input[type='text'], select, .image{
-        width: 250px;
+        width: 300px;
         height: 50px;
     }
     textarea{
-        width: 250px;
+        width: 300px;
         height: 100px;
     }
     .table_space{
@@ -60,6 +61,10 @@
         align-items: center;
         margin: 100px;
         padding: 100px;
+    }
+    .order_btn{
+        float: right;
+        margin-right: 35px;
     }
   </style>
 </head>
@@ -77,29 +82,8 @@
 
 
   <div class="body_con ">
-    <div class="order_dego col-md-4">
-        <form action="{{route('home.add_order')}}" method="post">
-            @csrf
-            <div class="">
-                <label for="">Name</label>
-                <input type="text" name="name" value="{{Auth::user()->name}}">
-            </div>
-            <div class="table_space">
-                <label for="">Address</label>
-                <textarea name="address" cols="30" rows="10">{{Auth::user()->address}}</textarea>
-            </div>
-            <div class="table_space">
-                <label for="">Phone</label>
-                <input type="text" name="phone" value="{{Auth::user()->phone}}">
-            </div>
 
 
-
-            <div class="table_space">
-                <input class="btn btn-primary" type="submit" value="Order">
-            </div>
-        </form>
-    </div>
 
     <div class="table_dego mt-10 col-md-7">
         <table class="table_deg table table-striped ">
@@ -148,6 +132,35 @@
 
             </tbody>
           </table>
+    </div>
+
+
+
+
+
+
+    <div class="order_dego col-md-4">
+        <form action="{{route('home.add_order')}}" method="post">
+            @csrf
+            <div class="">
+                <label for="">Name</label>
+                <input type="text" name="name" value="{{Auth::user()->name}}">
+            </div>
+            <div class="table_space">
+                <label for="">Address</label>
+                <textarea name="address" cols="30" rows="10">{{Auth::user()->address}}</textarea>
+            </div>
+            <div class="table_space">
+                <label for="">Phone</label>
+                <input type="text" name="phone" value="{{Auth::user()->phone}}">
+            </div>
+
+
+
+            <div class="table_space">
+                <input class="order_btn btn btn-primary" type="submit" value="Order">
+            </div>
+        </form>
     </div>
 
 </div>

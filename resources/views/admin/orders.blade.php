@@ -78,11 +78,13 @@
                     <th class="table_head">Price</th>
                     <th class="table_head">Status</th>
                     <th class="table_head">Action</th>
+                    <th class="table_head">Print</th>
                   </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($datas as $data)
+
 
                     <tr>
                         <td>
@@ -91,10 +93,24 @@
                         <td>{{$data->name}}</td>
                         <td>{{$data->address}}</td>
                         <td>{{$data->phone}}</td>
-                        <td>{{$data->product->name}}</td>
+                        <td>{!!Str::limit($data->product->name, 35)!!}</td>
                         <td>{{$data->product->price}}</td>
-                        <td>{{$data->status}}</td>
-                        <td><a href="" class="btn btn-danger">delete</a></td>
+
+                        <td >
+                            @if ($data->status == "delivered")
+                                <span style="color: rgb(52, 228, 52)">Delivered</span>
+                            @elseif ($data->status =="on_the_way")
+                                <span style="color: rgb(213, 213, 75)">On The Way</span>
+                            @else
+                                <span style="color: rgb(213, 42, 42)">In Process</span>
+                            @endif
+                        </td>
+
+                        <td>
+                            <a href="{{route('admin.on_the_way', $data->id)}}" class="btn btn-info">On the way</a>
+                            <a href="{{route('admin.delivered', $data->id)}}" class="btn btn-success">Delivered</a>
+                        </td>
+                        <td><a class="btn btn-secondary" href="{{route('admin.print_pdf', $data->id)}}">Print PDF</a></td>
                     </tr>
                     @endforeach
 

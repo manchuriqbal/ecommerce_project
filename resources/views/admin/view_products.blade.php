@@ -89,7 +89,7 @@
 
                     <tr>
                       <td>
-                        <img src="{{ asset('products/' . $products->image) }}" alt="">
+                        <img src="{{ asset('products/'  . $products->image) }}" alt="">
                       </td>
                       <td class="title">{!!Str::limit($products->name, 30)!!}</td>
                       <td>{!!Str::limit($products->description, 50)!!}</td>
