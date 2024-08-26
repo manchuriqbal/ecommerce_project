@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
@@ -11,6 +12,15 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
 {
+
+    public function index(){
+        $user = User::where('usertype', 'user')->get()->count();
+        $product = Product::all()->count();
+        $order = Order::all()->count();
+        $delivered = Order::where('status', 'delivered')->get()->count();
+        return view('admin.index', compact('user', 'product', 'order', 'delivered'));
+    }
+
     public function create(){
         $categories = Category::all();
         return view('admin.category', compact('categories'));
@@ -188,5 +198,7 @@ class AdminController extends Controller
         $pdf = Pdf::loadView('admin.invoice', compact('data'));
         return $pdf->download('invoice.pdf');
     }
+
+
 
 }

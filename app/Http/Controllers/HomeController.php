@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index(){
-        return view('admin.index');
-    }
 
     public function home(){
         $products = Product::paginate(8);
@@ -135,5 +132,12 @@ class HomeController extends Controller
         toastr()->closeButton()->timeOut(5000)->success('Order Placed successfully!');
         return redirect(route('home.home'));
 
+    }
+
+    public function my_order(){
+        $user_id = Auth::user()->id;
+        $count = Cart::where('user_id', $user_id)->count();
+        $orders = Order::where('user_id', $user_id)->get();
+        return view('home.my_order', compact('count', 'orders'));
     }
 }

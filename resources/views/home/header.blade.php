@@ -39,6 +39,11 @@
             @auth
 
 
+            <a href="{{route('home.my_order')}}" class="spacing">
+                Order<span class="cart_count">(1)</span>
+            </a>
+
+
             <form class="spacing" method="POST" action="{{ route('logout') }}">
                 @csrf
 

@@ -17,15 +17,16 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth','admin'])->name('admin.dashboard');
 Route::get('show_products', [HomeController::class, 'show_products'])->name('home.products');
 Route::get('product_details/{id}', [HomeController::class, 'product_details'])->name('home.product_details');
 Route::get('add_to_cart/{id}', [HomeController::class, 'add_to_cart'])->middleware(['auth', 'verified'])->name('home.add_to_cart');
 Route::get('my_cart/', [HomeController::class, 'my_cart'])->middleware(['auth', 'verified'])->name('home.my_cart');
 Route::delete('cart_item_delete/{id}', [HomeController::class, 'cart_item_delete'])->middleware(['auth', 'verified'])->name('home.cart_item_delete');
 Route::post('add_order/', [HomeController::class, 'add_order'])->middleware(['auth', 'verified'])->name('home.add_order');
+Route::get('my_order', [HomeController::class, 'my_order'])->middleware(['auth','verified'])->name('home.my_order');
 
 
+Route::get('admin/dashboard', [AdminController::class, 'index'])->middleware(['auth','admin'])->name('admin.dashboard');
 Route::get('admin/category', [AdminController::class, 'create'])->middleware(['auth','admin'])->name('category.create');
 Route::post('admin/category', [AdminController::class, 'store'])->middleware(['auth','admin'])->name('category.store');
 Route::delete('admin/delete/{id}', [AdminController::class, 'delete'])->middleware(['auth','admin'])->name('category.delete');
