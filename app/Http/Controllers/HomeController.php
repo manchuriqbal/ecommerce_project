@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use Stripe\Charge;
+use Stripe\Stripe;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -130,7 +134,7 @@ class HomeController extends Controller
             $data->delete();
         }
         toastr()->closeButton()->timeOut(5000)->success('Order Placed successfully!');
-        return redirect(route('home.home'));
+        return redirect(route('home.my_cart'));
 
     }
 
@@ -139,5 +143,49 @@ class HomeController extends Controller
         $count = Cart::where('user_id', $user_id)->count();
         $orders = Order::where('user_id', $user_id)->get();
         return view('home.my_order', compact('count', 'orders'));
+    }
+
+
+    public function stripe($value)
+    {
+        return view('home.stripe', compact('value'));
+    }
+
+    public function stripePost(Request $request, $value)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        Charge::create ([
+                "amount" => $value * 100,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from itsolutionstuff.com."
+        ]);
+
+        $name = Auth::user()->name;
+        $address = Auth::user()->address;
+        $phone = Auth::user()->phone;
+        $user_id = Auth::user()->id;
+        $carts = Cart::where('user_id', $user_id)->get();
+
+        foreach ($carts as $cart) {
+            $order = new Order;
+            $order->name = $name;
+            $order->address = $address;
+            $order->phone = $phone;
+            $order->payment_status = "paid";
+            $order->user_id = $user_id;
+            $order->product_id = $cart->product_id;
+
+            $order->save();
+        }
+        $cart_remove = Cart::where('user_id', $user_id)->get();
+
+        foreach ($cart_remove as $remove) {
+            $data = Cart::find($remove->id);
+            $data->delete();
+        }
+        toastr()->closeButton()->timeOut(5000)->success('Card Payment successfully!');
+        return redirect(route('home.my_cart'));
     }
 }

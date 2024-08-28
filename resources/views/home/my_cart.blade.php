@@ -158,7 +158,8 @@
 
 
             <div class="table_space">
-                <input class="order_btn btn btn-primary" type="submit" value="Order">
+                <input class="order_btn btn btn-primary" type="submit" value="Cash On Delivery">
+                <a href="{{route('stripe.get', $value)}}" class="btn btn-secondary">Pay Now on Card</a>
             </div>
         </form>
     </div>

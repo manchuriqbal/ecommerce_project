@@ -40,9 +40,13 @@
 
 
             <a href="{{route('home.my_order')}}" class="spacing">
-                Order<span class="cart_count">(1)</span>
+                My Order
             </a>
 
+
+            <a href="{{route('home.my_cart')}}" class="spacing">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span class="cart_count">({{$count}})</span>
+            </a>
 
             <form class="spacing" method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -50,10 +54,6 @@
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <input class="list-inline-item btn btn-secoundary" type="submit" value="logout">
             </form>
-
-            <a href="{{route('home.my_cart')}}" class="spacing">
-                <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span class="cart_count">({{$count}})</span>
-            </a>
 
             @else
 
