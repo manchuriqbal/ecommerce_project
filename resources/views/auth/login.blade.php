@@ -1,4 +1,34 @@
-<x-guest-layout>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  @include('home.head')
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    @include('home.header')
+    <!-- end header section -->
+
+  </div>
+  <!-- end hero area -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -17,9 +47,9 @@
             <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            type="password"
+            name="password"
+            required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -45,3 +75,7 @@
         </div>
     </form>
 </x-guest-layout>
+
+</body>
+
+</html>

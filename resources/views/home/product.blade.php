@@ -37,7 +37,7 @@
     @endforeach
       </div>
       <div class="btn-box">
-        <a href="{{route('home.products')}}">
+        <a href="{{route('home.shop')}}">
           View All Products
         </a>
       </div>

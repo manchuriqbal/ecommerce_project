@@ -15,22 +15,23 @@
             <a class="nav-link" href="{{route('home.home')}}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="shop.html">
+            <a class="nav-link" href="{{route('home.shop')}}">
               Shop
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="why.html">
-              Why Us
+            <a class="nav-link" href="{{route('home.why')}}">
+                Why Us
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="testimonial.html">
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('home.testimonial')}}">
               Testimonial
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact Us</a>
+            <a class="nav-link" href="{{route('home.contact')}}">
+                Contact Us</a>
           </li>
         </ul>
         <div class="user_option">

@@ -19,7 +19,7 @@
     }
     .card_btn a {
         margin-top: 30px;
-        padding: 10px 525px 10px 525px;
+        padding: 10px 520px 10px 520px;
         color: white;
 
     }
@@ -63,7 +63,7 @@
 
         </div>
         <div class="card_btn">
-            <a class="btn btn-secondary" href="">Add To Cart</a>
+            <a class="btn btn-secondary" href="{{route('home.add_to_cart', $product->id)}}">Add To Cart</a>
         </div>
     </div>
 

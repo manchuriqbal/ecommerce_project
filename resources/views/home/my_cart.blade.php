@@ -34,7 +34,7 @@
         border: 2px solid rgb(142, 133, 133);
     }
     .amount_price {
-        background: green;
+        background: rgb(64, 64, 67);
         color: white;
     }
     .order_dego{

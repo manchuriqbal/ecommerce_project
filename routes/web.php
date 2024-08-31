@@ -17,7 +17,15 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('show_products', [HomeController::class, 'show_products'])->name('home.products');
+Route::get('shop', [HomeController::class, 'shop'])->name('home.shop');
+Route::get('why', [HomeController::class, 'why'])->name('home.why');
+Route::get('testimonial', [HomeController::class, 'testimonial'])->name('home.testimonial');
+Route::get('contact', [HomeController::class, 'contact'])->name('home.contact');
+
+
+
+
+
 Route::get('product_details/{id}', [HomeController::class, 'product_details'])->name('home.product_details');
 Route::get('add_to_cart/{id}', [HomeController::class, 'add_to_cart'])->middleware(['auth', 'verified'])->name('home.add_to_cart');
 Route::get('my_cart/', [HomeController::class, 'my_cart'])->middleware(['auth', 'verified'])->name('home.my_cart');

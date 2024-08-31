@@ -59,7 +59,7 @@
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Orders</h2>
+            <h2 class="h5 no-margin-bottom"> All Orders</h2>
           </div>
         </div>
 
@@ -76,6 +76,7 @@
                     <th class="table_head" scope="col">Phone</th>
                     <th class="table_head">Product Name</th>
                     <th class="table_head">Price</th>
+                    <th class="table_head">Payment Status</th>
                     <th class="table_head">Status</th>
                     <th class="table_head">Action</th>
                     <th class="table_head">Print</th>
@@ -105,7 +106,14 @@
                                 <span style="color: rgb(213, 42, 42)">In Process</span>
                             @endif
                         </td>
+                        <td>
 
+                            @if ($data->payment_status == "cash_on_delivery")
+                                <span style="color: rgb(255, 255, 255)">Cash On Delivery</span>
+                            @else
+                                <span style="color: rgb(21, 202, 21)">Paid</span>
+                            @endif
+                        </td>
                         <td>
                             <a href="{{route('admin.on_the_way', $data->id)}}" class="btn btn-info">On the way</a>
                             <a href="{{route('admin.delivered', $data->id)}}" class="btn btn-success">Delivered</a>

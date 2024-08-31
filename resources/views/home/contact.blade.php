@@ -1,4 +1,22 @@
-<section class="contact_section ">
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  @include('home.head')
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    @include('home.header')
+    <!-- end header section -->
+  </div>
+  <!-- end hero area -->
+
+
+
+  <section class="contact_section layout_padding">
     <div class="container px-0">
       <div class="heading_container ">
         <h2 class="">
@@ -39,3 +57,21 @@
       </div>
     </div>
   </section>
+
+
+
+  <!-- info section -->
+  @include('home.foter')
+
+  <!-- end info section -->
+
+
+  <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+  <script src="{{asset('js/bootstrap.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <script src="{{asset('js/custom.js')}}"></script>
+
+</body>
+
+</html>
